@@ -58,65 +58,7 @@
 | 删掉页面广告 | 开 | |
 | 播放器放大铺满整行 | 关 | 会隐藏右栏卡片 |
 
-## 实现要点（踩过的坑）
 
-- 清单里 `content_scripts.css` 注入的样式在 B 站首页会「掉」（进不了样式表），所以样式改由 `content.js` 注入 `<style>` 并每秒兜底重建。
-- 顶栏 `.left-entry-main` / `.right-entry__main` 的直接子节点是 `div` 不是 `li`，别按 `li` 写选择器。
-- 首页「首页」项 class 是 `home-page-entry` / `home-page-panel-entry`；头像靠 `[class*="avatar"]` 或内部 `.bili-avatar` 识别。
-- **视频选集 `.video-pod` 住在 `.rcmd-tab` 里面**，删推荐时不能整块删 `.rcmd-tab`。
-- 播放器尺寸：`.left-container` 宽 = 播放器宽；`#bilibili-player` 高 = `9/16*宽 + 56/46px` 顶栏；`#playerWrap` 高同步。
-- 真全屏 / 网页全屏 / 小窗（`.bpx-player-container[data-screen]` ≠ `normal`）时放手，交还 B 站排版。
-
-## 已知限制
-
-- **视频里的贴片广告删不掉**：属于播放器内部逻辑，纯前端拦不住。
-- **多 P 选集**：默认保留；若你把「右栏只留 UP 主卡」关掉，选集会回到原版右栏。
-- **B 站改版**：类名变了就失效，改 `content.js` 顶部 `CSS` 数组里的选择器即可。
-
-## 文件
-
-```
-manifest.json      MV3 清单
-content.js         全部逻辑：开关、样式注入、首页 hero、搜索历史、光晕、右栏/选集、播放器放大
-popup.html/css/js  面板开关
-icons/             图标
-LICENSE            MIT
-```
-
-## 分享给别人
-
-打包（zip 根目录必须是 manifest.json，不要多套一层文件夹）：
-
-```powershell
-Compress-Archive -Path bili-clean-extension\* -DestinationPath bili-clean-extension-v1.2.0.zip
-```
-
-对方收到 zip 后：
-
-1. 解压到任意固定位置（之后别删别移动）
-2. `edge://extensions/` → 打开**开发人员模式**
-3. **加载解压缩的扩展** → 选解压出来的文件夹
-
-## 发到 GitHub
-
-```bash
-git init
-git add .
-git commit -m "B站右栏清理 v1.2.0"
-git remote add origin https://github.com/<你>/<仓库>.git
-git push -u origin main
-git tag v1.2.0 && git push origin v1.2.0
-```
-
-然后把 zip 作为 Release 附件上传，README 里写清安装步骤。
-
-> GitHub 本身**不能一键安装**扩展（浏览器只认商店签名或本地解压目录）。想做到"点一下就装"只能上架商店。
-
-## 上架 Edge 加载项商店（可选）
-
-1. 注册 [Microsoft Partner Center](https://partner.microsoft.com/)（免费，个人账号即可）
-2. 新建 Edge 扩展提交，上传 zip、图标、至少 1 张截图、隐私说明（本扩展只改页面显示，不收集数据）
-3. 审核一般几天；通过后用户点「获取」就能装
 
 ## 版本更新
 
