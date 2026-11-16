@@ -59,7 +59,3 @@
 | 播放器放大铺满整行 | 关 | 会隐藏右栏卡片 |
 
 
-
-## 版本更新
-
-改 `manifest.json` 的 `version` → 重新压缩 zip → 发 Release；商店版需在 Partner Center 提交新包等审核。
