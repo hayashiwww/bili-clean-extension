@@ -6,6 +6,13 @@
 
 纯前端注入：不请求任何服务器、不读账号信息、不改你的设置。
 
+## 截图
+
+| 首页（深色 · Google 式） | 视频页（右栏只剩 UP 主卡 + 选集） |
+| --- | --- |
+| <img src="screenshots/home-dark.png" width="470"> | <img src="screenshots/video-page.png" width="470"> |
+
+
 ## 装到 Edge
 
 1. 地址栏打开 `edge://extensions/`
