@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>B站右栏清理</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="logo">▶</div>
+    <div class="head-text">
+      <h1>B站右栏清理</h1>
+      <p>改了立即生效，刷新不丢</p>
+    </div>
+  </header>
+
+  <main>
+    <label class="row">
+      <span class="row-text">
+        <b>极简顶栏</b>
+        <i>只留「首页」和右上角头像，番剧/直播/投稿按钮等全删</i>
+      </span>
+      <input type="checkbox" id="hideNav">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>首页只留搜索框</b>
+        <i>首页横幅/轮播/所有视频卡片全删，只剩顶栏和搜索</i>
+      </span>
+      <input type="checkbox" id="homeOnly">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>字标光晕颜色</b>
+        <i>首页「bilibili」标志的发光颜色</i>
+      </span>
+      <input type="color" id="logoGlowColor" value="#FB7299">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>鼠标光晕颜色</b>
+        <i>默认跟随主题：深色=白，浅色=黑</i>
+      </span>
+      <span class="ctl">
+        <input type="color" id="cursorGlowColor" value="#FFFFFF">
+        <button type="button" class="mini" id="resetCursorColor" title="恢复默认（跟随主题）">默认</button>
+      </span>
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>鼠标光晕强度</b>
+        <i id="strengthLabel">28%　（0 = 关闭）</i>
+      </span>
+      <input type="range" id="cursorGlowStrength" min="0" max="100" step="1" value="28">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>收藏夹页瘦身</b>
+        <i>打开自己的收藏夹时，只留左边目录 + 收藏的视频</i>
+      </span>
+      <input type="checkbox" id="favClean">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>删掉「推荐 / 接下来播放」</b>
+        <i>右栏下面那一长串视频卡片</i>
+      </span>
+      <input type="checkbox" id="hideRcmd">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>删掉页面广告</b>
+        <i>推荐位广告 / 游戏卡 / 活动横幅</i>
+      </span>
+      <input type="checkbox" id="hideAds">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>右栏只留 UP 主卡</b>
+        <i>删掉选集/弹幕列表/推荐，右侧只保留 UP 主名字和关注按钮</i>
+      </span>
+      <input type="checkbox" id="hideRight">
+    </label>
+
+    <label class="row">
+      <span class="row-text">
+        <b>播放器放大铺满整行</b>
+        <i>只在「整个右栏一起删」时生效，按 16:9 放大</i>
+      </span>
+      <input type="checkbox" id="wide">
+    </label>
+  </main>
+
+  <p id="hint" class="hint"></p>
+
+  <footer>只改本地页面显示 · 不碰账号 · 不发额外请求</footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

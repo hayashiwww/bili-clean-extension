@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "B站右栏清理 · BiliRightClean",
+  "version": "1.2.0",
+  "description": "去掉 B 站视频页右侧的推荐栏、「接下来播放」、弹幕列表和页面广告，只留你想看的内容。",
+  "minimum_chrome_version": "105",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.bilibili.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "B站右栏清理",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}
